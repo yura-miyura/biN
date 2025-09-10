@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yartym <yartym@student.42.fr>              #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-10 07:16:35 by yartym            #+#    #+#             */
-/*   Updated: 2025-09-10 07:16:35 by yartym           ###   ########.fr       */
+/*   Created: 2025-09-10 14:38:54 by yartym            #+#    #+#             */
+/*   Updated: 2025-09-10 14:38:54 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Fnct recreates strcpy from <string.h>,
-but it doesn't fill empty spaces with \0 */
-char	*ft_strcpy(char *dest, char *src)
+int	ft_str_is_printable(char *str)
 {
 	int	index;
 
 	index = 0;
-	while (src[index] != '\0')
+	while (str[index] != '\0')
 	{
-		dest[index] = src[index];
+		if (!(str[index] >= '!' && str[index] <= '~'))
+			return (0);
 		index++;
 	}
-	dest[index] = '\0';
-	return (dest);
+	return (1);
 }
 
 /* #include <stdio.h>
-int	main(void)
+int main(void)
 {
-	char *src = "why are you";
-	char dest[12];
-	ft_strcpy(dest, src);
-	printf("%s\n", dest);
-}*/
+	char *str = "";
+	printf("%i\n", ft_str_is_printable(str));
+}
+ */

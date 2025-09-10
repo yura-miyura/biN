@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yartym <yartym@student.42.fr>              #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-10 07:16:35 by yartym            #+#    #+#             */
-/*   Updated: 2025-09-10 07:16:35 by yartym           ###   ########.fr       */
+/*   Created: 2025-09-10 16:50:45 by yartym            #+#    #+#             */
+/*   Updated: 2025-09-10 16:50:45 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Fnct recreates strcpy from <string.h>,
-but it doesn't fill empty spaces with \0 */
-char	*ft_strcpy(char *dest, char *src)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	int	index;
+	unsigned int	src_len;
+	unsigned int	index;
 
-	index = 0;
-	while (src[index] != '\0')
+	src_len = 0;
+	while (src[src_len] != '\0')
 	{
-		dest[index] = src[index];
+		dest[src_len] = src[src_len];
+		src_len++;
+	}
+	index = src_len;
+	while (index < size)
+	{
+		dest[index] = '\0';
 		index++;
 	}
-	dest[index] = '\0';
-	return (dest);
+	return (src_len);
 }
 
 /* #include <stdio.h>
-int	main(void)
+int main(void)
 {
-	char *src = "why are you";
-	char dest[12];
-	ft_strcpy(dest, src);
+	unsigned int	size = 10;
+	char *src = "hello";
+	char dest[size];
+	printf("%d\n", ft_strlcpy(dest, src, size));
 	printf("%s\n", dest);
-}*/
+} */

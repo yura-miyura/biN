@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yartym <yartym@student.42.fr>              #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-10 07:16:35 by yartym            #+#    #+#             */
-/*   Updated: 2025-09-10 07:16:35 by yartym           ###   ########.fr       */
+/*   Created: 2025-09-10 07:30:30 by yartym            #+#    #+#             */
+/*   Updated: 2025-09-10 07:30:30 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Fnct recreates strcpy from <string.h>,
-but it doesn't fill empty spaces with \0 */
-char	*ft_strcpy(char *dest, char *src)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	int	index;
+	unsigned int	index;
 
 	index = 0;
 	while (src[index] != '\0')
@@ -22,15 +20,19 @@ char	*ft_strcpy(char *dest, char *src)
 		dest[index] = src[index];
 		index++;
 	}
-	dest[index] = '\0';
+	while (index < n)
+	{
+		dest[index] = '\0';
+		index++;
+	}
 	return (dest);
 }
 
 /* #include <stdio.h>
-int	main(void)
+int main(void)
 {
-	char *src = "why are you";
-	char dest[12];
-	ft_strcpy(dest, src);
-	printf("%s\n", dest);
-}*/
+	unsigned int	n = 50;
+	char *src = "hello this function works";
+	char dest[n];
+	printf("%s\n", ft_strncpy(dest, src, n));
+} */
