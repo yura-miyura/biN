@@ -17,7 +17,7 @@ int	ft_str_is_printable(char *str)
 	index = 0;
 	while (str[index] != '\0')
 	{
-		if (!(str[index] >= '!' && str[index] <= '~'))
+		if (!(str[index] >= ' '))
 			return (0);
 		index++;
 	}
