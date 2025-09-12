@@ -1,11 +1,24 @@
-// header
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_memory.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yartym <yartym@student.42.fr>              #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-12 10:19:40 by yartym            #+#    #+#             */
+/*   Updated: 2025-09-12 10:19:40 by yartym           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void ft_ptchar(char c)
+#include <unistd.h>
+// Fucking delete it
+#include <stdio.h>
+
+void	ft_ptchar(char c)
 {
 	write(1, &c, 1);
 }
-void char_to_hex(char c)
+void	char_to_hex(char c)
 {
 	char hex_number;
 	char hex_letter;
@@ -16,26 +29,30 @@ void char_to_hex(char c)
 		hex_letter += 87;
 	else
 		hex_letter += '0';
-	ft_ptchar('\\');
 	ft_ptchar(hex_number);
 	ft_ptchar(hex_letter);
 }
 
-#include <stdio.h>
-void	*ft_print_memory(void *addr, unsigned int size)
+void	first_column (void *addr)
 {
-	// char *str_addr;
-	// str_addr = (char *) &addr;
-	// printf("%s\n", str_addr);
-	// return (addr);
+	unsigned  long	addr_as_number;
+
+	addr_as_number = (unsigned long) addr;
+	printf("%p\n", addr);
+	printf("%lx\n", addr_as_number);
 }
 
-#include <stdlib.h>
+void	*ft_print_memory(void *addr, unsigned int size)
+{
+
+}
+
 int main(void)
 {
-	char *str = "Bonjour les amin";
+	char *str = "Bonjour les aminches\n\n\nc\n est fo u\ntout\nce qu on peut faire avec\n\n\nprint_memory\n\n\n\nlol\nlol\n \n";
 	unsigned int size = 17;
 	void *addr = str;
 
-	ft_print_memory(addr, size);
+	first_column (addr);
+	// ft_print_memory(addr, size);
 }

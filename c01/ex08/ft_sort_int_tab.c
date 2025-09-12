@@ -1,32 +1,20 @@
-// #include <stdio.h>
-// void	ft_sort_int_tab(int *tab, int size)
-// {
-// 	int i;
-// 	int tmp;
-
-// 	while (size > 0)
-// 	{
-// 		i = 0;
-// 		tmp = tab[size - 1];
-// 		while (i < size)
-// 		{
-// 			if (tab[i] > tab[size - 1])
-// 			{
-// 				tmp = tab[size - 1];
-// 				tab[size - 1] = tab[i];
-// 				tab[i] = tmp;
-// 			}
-// 			i++;
-// 		}
-// 		size--;
-// 	}
-// }
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yartym <yartym@student.42.fr>              #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-10 07:03:58 by yartym            #+#    #+#             */
+/*   Updated: 2025-09-10 07:03:58 by yartym           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 void	ft_sort_int_tab(int *tab, int size)
 {
-	int i;
-	int k;
-	int tmp;
+	int	i;
+	int	k;
+	int	tmp;
 
 	k = 0;
 	while (k < size)
@@ -46,8 +34,31 @@ void	ft_sort_int_tab(int *tab, int size)
 		k++;
 	}
 }
+// Second version of the logic, looks for biggest number and sorts from there
+/* void	ft_sort_int_tab(int *tab, int size)
+{
+	int	i;
+	int	tmp;
 
-#include <stdio.h>
+	while (size > 0)
+	{
+		i = 0;
+		tmp = tab[size - 1];
+		while (i < size)
+		{
+			if (tab[i] > tab[size - 1])
+			{
+				tmp = tab[size - 1];
+				tab[size - 1] = tab[i];
+				tab[i] = tmp;
+			}
+			i++;
+		}
+		size--;
+	}
+} */
+
+/* #include <stdio.h>
 int	main(void)
 {
 	int tab[10] = {-1, 1, 99, 2, 1, 4, 3, 2, 1, 0};
@@ -57,4 +68,4 @@ int	main(void)
 	{
 		printf("counter: %i %i\n", counter++, tab[i]);
 	}
-}
+}*/
