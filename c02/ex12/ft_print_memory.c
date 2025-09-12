@@ -14,45 +14,38 @@
 // Fucking delete it
 #include <stdio.h>
 
-void	ft_ptchar(char c)
+void	ft_puthex(unsigned long long nb)
 {
-	write(1, &c, 1);
-}
-void	char_to_hex(char c)
-{
-	char hex_number;
-	char hex_letter;
+	char *array;
 
-	hex_number = (c / 16) + '0';
-	hex_letter = c % 16;
-	if (hex_letter >= 10 && hex_letter <= 15)
-		hex_letter += 87;
-	else
-		hex_letter += '0';
-	ft_ptchar(hex_number);
-	ft_ptchar(hex_letter);
+	array = "0123456789abcdef";
+	if (nb >= 16)
+		ft_puthex(nb / 16);
+	write(1, &array[nb%16], 1);
 }
 
 void	first_column (void *addr)
 {
-	unsigned  long	addr_as_number;
+	unsigned long long	addr_as_number;
 
-	addr_as_number = (unsigned long) addr;
+	addr_as_number = (unsigned long long) addr;
 	printf("%p\n", addr);
-	printf("%lx\n", addr_as_number);
+	printf("%lli\n", addr_as_number);
 }
 
-void	*ft_print_memory(void *addr, unsigned int size)
-{
+// void	*ft_print_memory(void *addr, unsigned int size)
+// {
 
-}
+// }
 
 int main(void)
 {
 	char *str = "Bonjour les aminches\n\n\nc\n est fo u\ntout\nce qu on peut faire avec\n\n\nprint_memory\n\n\n\nlol\nlol\n \n";
 	unsigned int size = 17;
 	void *addr = str;
+	unsigned long long	addr_as_number = addr_as_number = (unsigned long long) addr;
 
-	first_column (addr);
+	printf("%p\n", addr);
+	ft_puthex(addr_as_number);
 	// ft_print_memory(addr, size);
 }
