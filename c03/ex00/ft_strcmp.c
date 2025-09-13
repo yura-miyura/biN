@@ -20,7 +20,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return (*s1 - *s2);
 }
 
-#include <string.h>
+/* #include <string.h>
 #include <stdio.h>
 int main(void)
 {
@@ -29,4 +29,4 @@ int main(void)
 	printf("%i\n", ft_strcmp(s1, s2));
 	printf("%i\n", strcmp(s1, s2));
 }
-
+*/

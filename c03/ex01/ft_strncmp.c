@@ -15,8 +15,11 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	while (n > 0 && *s1 && *s2 && *s1 == *s2)
 	{
 		n--;
-		s1++;
-		s2++;
+		if (n > 0)
+		{
+			s1++;
+			s2++;
+		}
 	}
 	return (*s1 - *s2);
 }
@@ -27,7 +30,7 @@ int main(void)
 {
 	unsigned int n = 4;
 	char *s1 = "hell";
-	char *s2 = "helu";
+	char *s2 = "hel";
 
 	printf("%i\n", ft_strncmp(s1, s2, n));
 	printf("%i\n", strncmp(s1, s2, n));
