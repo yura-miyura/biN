@@ -47,22 +47,20 @@ void	first_column(void *addr)
 void	second_column(char *str_addr, unsigned int size)
 {
 	char	*array;
-	int		stop;
+	int 	counter;
 
-	stop = 0;
 	array = "0123456789abcdef";
-	while (16 - size < 16)
+	counter = 0;
+	while (*str_addr && 16 - size-- < 16)
 	{
 		write(1, &array[*str_addr / 16], 1);
 		write(1, &array[*str_addr % 16], 1);
 		if (!(counter % 2 == 0))
 			write(1, " ", 1);
-		if (*str_addr == '\0')
-			stop = 1;
 		counter++;
 		str_addr++;
 	}
-	while (counter < size)
+	while (counter != 16)
 	{
 		write(1, "  ", 2);
 		if (!(counter % 2 == 0))
