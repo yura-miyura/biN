@@ -1,26 +1,35 @@
-// header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yartym <yartym@student.42.fr>              #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-13 12:05:25 by yartym            #+#    #+#             */
+/*   Updated: 2025-09-13 12:05:25 by yartym           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	while (n > 0 && *s1 && *s2)
+	while (n > 0 && *s1 && *s2 && *s1 == *s2)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
 		n--;
 		s1++;
 		s2++;
 	}
-	return (0);
+	return (*s1 - *s2);
 }
 
 /* #include <stdio.h>
 #include <string.h>
 int main(void)
 {
-	unsigned int n = 6;
-	char *s1 = "heli";
+	unsigned int n = 4;
+	char *s1 = "hell";
 	char *s2 = "helu";
 
 	printf("%i\n", ft_strncmp(s1, s2, n));
+	printf("%i\n", strncmp(s1, s2, n));
 }
 */

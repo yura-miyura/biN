@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -18,7 +19,7 @@ void	ft_putchar(char c)
 
 void	ft_putnbr(unsigned int nb)
 {
-	char number;
+	char	number;
 
 	if (nb >= 10)
 		ft_putnbr(nb / 10);
