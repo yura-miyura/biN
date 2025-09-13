@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/yuriiartymicloud.com/Desktop/my_git/c02/ex12/ft_print_memory'
+relocations:     []
+...
