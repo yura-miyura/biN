@@ -11,10 +11,6 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-<<<<<<< HEAD
-#include <stdio.h>
-=======
->>>>>>> 0daa2a77083ee5ced4268ac646fde8bd9de8e38c
 
 int	number_to_hex(unsigned long long nb)
 {
@@ -54,13 +50,8 @@ void	second_column(char *str_addr, unsigned int size)
 	int 	counter;
 
 	array = "0123456789abcdef";
-<<<<<<< HEAD
-
-	if (*str_addr == '\0')
-=======
 	counter = 0;
 	while (*str_addr && 16 - size-- < 16)
->>>>>>> 0daa2a77083ee5ced4268ac646fde8bd9de8e38c
 	{
 		write(1, &array[*str_addr / 16], 1);
 		write(1, &array[*str_addr % 16], 1);
@@ -85,11 +76,7 @@ int	third_column(char *str_addr, unsigned int size)
 		size--;
 		if (*str_addr == '\0')
 		{
-<<<<<<< HEAD
-			write(1, "\n", 1);
-=======
-			write(1, ".\n", 2);
->>>>>>> 0daa2a77083ee5ced4268ac646fde8bd9de8e38c
+			write(1, ".\n", 1);
 			return (1);
 		}
 		else if (*str_addr < ' ' || *str_addr > '~')
@@ -119,7 +106,7 @@ void	*ft_print_memory(void *addr, unsigned int size)
 	return (addr);
 }
 
-#include <strlen.h>
+#include <string.h>
 int main(void)
 {
 	char *str = "0123456789012345";
