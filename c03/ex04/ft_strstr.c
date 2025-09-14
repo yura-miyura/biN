@@ -37,7 +37,7 @@ char	*ft_strstr(char *str, char *to_find)
 int main(void)
 {
 	char *str = "hello my name is Yurii and I'm Yurii in 42 campus";
-	char *to_find = "";
+	char *to_find = "hello";
 	printf("%p\n", ft_strstr(str, to_find));
 	printf("%p\n", strstr(str, to_find));
 }
