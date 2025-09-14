@@ -12,104 +12,99 @@
 
 #include <unistd.h>
 
-int	number_to_hex(unsigned long long nb)
+#define HEX 16
+
+void space_padding(int counter)
+{
+	if (!(counter % 2 == 0))
+		write(1, " ", 1);
+}
+
+void	number_to_hex(unsigned long long nb, int counter)
 {
 	char	*array;
 
 	array = "0123456789abcdef";
-	if (nb >= 16)
-		number_to_hex(nb / 16);
-	write(1, &array[nb % 16], 1);
+	if (nb >= HEX)
+		number_to_hex(nb / HEX, counter + 1);
+	if (nb < HEX)
+	 	while (counter++ < HEX)
+			write(1, "0", 1);
+	write(1, &array[nb % HEX], 1);
 }
 
-void	first_column(void *addr)
+void	first_column(void *addr, int counter)
 {
 	unsigned long long	addr_as_number;
-	int					length;
-
-	length = 0;
 	addr_as_number = (unsigned long long) addr;
-	while (addr_as_number >= 16)
-	{
-		addr_as_number /= 16;
-		length++;
-	}
-	while (16 - length > 0)
-	{
-		write(1, "0", 1);
-		length++;
-	}
-	addr_as_number = (unsigned long long) addr;
-	number_to_hex(addr_as_number);
+	number_to_hex(addr_as_number, 1);
 	write(1, ": ", 2);
 }
 
-void	second_column(char *str_addr, unsigned int size)
+void	second_column(char *str_addr, unsigned int size, int counter)
 {
 	char	*array;
-	int 	counter;
 
 	array = "0123456789abcdef";
-	counter = 0;
-	while (*str_addr && 16 - size-- < 16)
+	while (*str_addr && counter < HEX)
 	{
-		write(1, &array[*str_addr / 16], 1);
-		write(1, &array[*str_addr % 16], 1);
-		if (!(counter % 2 == 0))
-			write(1, " ", 1);
+		write(1, &array[*str_addr / HEX], 1);
+		write(1, &array[*str_addr % HEX], 1);
+		space_padding(counter);
 		counter++;
 		str_addr++;
 	}
-	while (counter != 16)
+	if (*str_addr == '\0' && counter < HEX)
+		write(1, "00", 2);
+		space_padding(counter);
+		counter++;
+	while (counter < HEX)
 	{
 		write(1, "  ", 2);
-		if (!(counter % 2 == 0))
-			write(1, " ", 1);
+		space_padding(counter);
 		counter++;
 	}
 }
 
-int	third_column(char *str_addr, unsigned int size)
+void third_column(char *str_addr, int counter)
 {
-	while (size > 0)
+	while (counter < HEX)
 	{
-		size--;
 		if (*str_addr == '\0')
 		{
-			write(1, ".\n", 1);
-			return (1);
+			write(1, ".", 1);
+			counter = HEX;
 		}
 		else if (*str_addr < ' ' || *str_addr > '~')
 			write(1, ".", 1);
 		else
 			write(1, str_addr, 1);
 		str_addr++;
+		counter++;
 	}
 	write(1, "\n", 1);
-	return (0);
 }
 
 void	*ft_print_memory(void *addr, unsigned int size)
 {
 	char	*str_addr;
-	int		number_of_rows;
-	int		full_stop;
+	int		counter;
 
+	counter = 0;
 	str_addr = addr;
-	number_of_rows = size / 16;
-	first_column(addr);
-	second_column (str_addr, size, number_of_rows);
-	full_stop = third_column(str_addr, size);
-	if (full_stop == 1)
-		return (addr);
-	ft_print_memory(addr + size, size);
+	first_column(addr, counter);
+	second_column (str_addr, size, counter);
+	third_column(str_addr, counter);
+	if (size >= HEX)
+		ft_print_memory(addr + HEX, size - HEX);
 	return (addr);
 }
 
 #include <string.h>
 int main(void)
 {
-	char *str = "0123456789012345";
+	// char *str = "Bonjour les aminches\n\n\nc\n est fou\ntout\nce qu on peut faire avec\n\n\nprint_memory\n\n\n\nlol\nlol\n ";
+	char *str = "this is a hole journey how I wrote this shit for three days \n and it's goint to compile for fucking sure\n life shit and then you die how Ellie's dad sad";
 	unsigned int size = strlen(str);
 	void *addr = str;
 
