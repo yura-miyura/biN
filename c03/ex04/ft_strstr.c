@@ -16,9 +16,9 @@ char	*ft_strstr(char *str, char *to_find)
 	int		index_str;
 
 	index_str = 0;
-	if (!(*to_find))
+	if (*to_find == '\0')
 		return (str);
-	while (str[index_str++])
+	while (str[index_str])
 	{
 		index_to_find = 0;
 		while (str[index_str + index_to_find] == to_find[index_to_find])
@@ -27,6 +27,7 @@ char	*ft_strstr(char *str, char *to_find)
 			if (to_find[index_to_find] == '\0')
 				return (&str[index_str]);
 		}
+		index_str++;
 	}
 	return (0);
 }
@@ -36,8 +37,8 @@ char	*ft_strstr(char *str, char *to_find)
 int main(void)
 {
 	char *str = "hello my name is Yurii and I'm Yurii in 42 campus";
-	char *to_find = " Yurii";
+	char *to_find = "";
 	printf("%p\n", ft_strstr(str, to_find));
 	printf("%p\n", strstr(str, to_find));
 }
-*/
+ */
