@@ -20,20 +20,20 @@ char	*ft_strcapitalize(char *str)
 		if (str[index] >= 'a' && str[index] <= 'z')
 		{
 			if (index == 0)
-				str[index] -= 32;
-			else if (str[index - 1] == ' ' || str[index - 1] == '+' \
+				str[index] -= 'a' - 'A';
+			else if (str[index - 1] == ' ' || str[index - 1] == '+'
 				|| str[index - 1] == '-')
-				str[index] -= 32;
+				str[index] -= 'a' - 'A';
 		}
 		index++;
 	}
 	return (str);
 }
 
-/* #include <stdio.h>
+#include <stdio.h>
 int main(void)
 {
 	char str[] = "hi, how are you? 42words forty-two; fifty+and+one";
 	printf("%s\n", str);
 	printf("%s\n", ft_strcapitalize(str));
-} */
+}

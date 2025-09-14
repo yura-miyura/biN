@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-// Fucking delete it
 #include <stdio.h>
 
 void	number_to_hex(unsigned long long nb)
@@ -39,6 +38,7 @@ void second_column (char *str_addr, unsigned int size, int counter)
 	char *array;
 
 	array = "0123456789abcdef";
+
 	if (*str_addr == '\0')
 	{
 		write (1, "\t\t", 1);
@@ -58,7 +58,11 @@ int	third_column(char *str_addr, unsigned int size)
 	while (size > 0)
 	{
 		size--;
-			write(1, "\0", 1);
+		if (*str_addr == '\0')
+		{
+			write(1, "\n", 1);
+			return (1);
+		}
 		else if (*str_addr < ' ' || *str_addr > '~')
 			write(1, ".", 1);
 		else

@@ -18,7 +18,7 @@ char	*ft_strlowcase(char *str)
 	while (str[index] != '\0')
 	{
 		if (str[index] >= 'A' && str[index] <= 'Z')
-			str[index] += 32;
+			str[index] += 'a' - 'A';
 		index++;
 	}
 	return (str);
@@ -32,4 +32,4 @@ int main(void)
 	printf("Before: %s\n", str);
 	printf("After: %s\n", ft_strlowcase(str));
 }
-*/
+ */

@@ -17,7 +17,7 @@ int	ft_str_is_printable(char *str)
 	index = 0;
 	while (str[index] != '\0')
 	{
-		if (!(str[index] >= ' '))
+		if (!(str[index] >= ' ' && str[index] <= '~'))
 			return (0);
 		index++;
 	}
@@ -25,9 +25,10 @@ int	ft_str_is_printable(char *str)
 }
 
 /* #include <stdio.h>
+#include <ctype.h>
 int main(void)
 {
-	char *str = "";
+	char str[] = {'h', ' ', '\0'};
 	printf("%i\n", ft_str_is_printable(str));
 }
- */
+*/

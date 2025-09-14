@@ -18,19 +18,15 @@ void ft_ptchar(char c)
 }
 void char_to_hex(char c)
 {
-	char hex_number;
-	char hex_letter;
+	char *array;
 
-	hex_number = (c / 16) + '0';
-	hex_letter = c % 16;
-	if (hex_letter >= 10 && hex_letter <= 15)
-		hex_letter += 87;
-	else
-		hex_letter += '0';
-	ft_ptchar('\\');
-	ft_ptchar(hex_number);
-	ft_ptchar(hex_letter);
+	array = "0123456789abcdef";
+
+	if (c > 15)
+		char_to_hex(c / 16);
+ 	ft_ptchar(array[c % 16]);
 }
+
 void ft_putstr_non_printable(char *str)
 {
 	int	index;
@@ -39,15 +35,21 @@ void ft_putstr_non_printable(char *str)
 	while (str[index] != '\0')
 	{
 		if (str[index] < ' ' || str[index] > '~')
-				char_to_hex(str[index]);
+		{
+			ft_ptchar('\\');
+			if (str[index] < 16)
+				ft_ptchar('0');
+			char_to_hex(str[index]);
+		}
 		else
 			ft_ptchar(str[index]);
 		index++;
 	}
 }
 
-int main(void)
+/* int main(void)
 {
-	char *str = "Hello\vHow\rare\tyou?";
+	char str[] ={'h', '\n', '3', 17, '\0'};
 	ft_putstr_non_printable(str);
 }
+*/

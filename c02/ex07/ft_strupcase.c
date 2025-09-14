@@ -18,7 +18,7 @@ char	*ft_strupcase(char *str)
 	while (str[index] != '\0')
 	{
 		if (str[index] >= 'a' && str[index] <= 'z')
-			str[index] -= 32;
+			str[index] -= 'a' - 'A';
 		index++;
 	}
 	return (str);
@@ -33,3 +33,4 @@ int main(void)
 	printf("After: %s\n", ft_strupcase(str));
 }
 */
+
