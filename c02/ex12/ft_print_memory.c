@@ -11,46 +11,71 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+<<<<<<< HEAD
 #include <stdio.h>
+=======
+>>>>>>> 0daa2a77083ee5ced4268ac646fde8bd9de8e38c
 
-void	number_to_hex(unsigned long long nb)
+int	number_to_hex(unsigned long long nb)
 {
-	char *array;
+	char	*array;
 
 	array = "0123456789abcdef";
 	if (nb >= 16)
 		number_to_hex(nb / 16);
-	write(1, &array[nb%16], 1);
+	write(1, &array[nb % 16], 1);
 }
 
-void	first_column (void *addr)
+void	first_column(void *addr)
 {
 	unsigned long long	addr_as_number;
+	int					length;
 
+	length = 0;
 	addr_as_number = (unsigned long long) addr;
-	write(1, "0000000", 7);
+	while (addr_as_number >= 16)
+	{
+		addr_as_number /= 16;
+		length++;
+	}
+	while (16 - length > 0)
+	{
+		write(1, "0", 1);
+		length++;
+	}
+	addr_as_number = (unsigned long long) addr;
 	number_to_hex(addr_as_number);
 	write(1, ": ", 2);
 }
 
-void second_column (char *str_addr, unsigned int size, int counter)
+void	second_column(char *str_addr, unsigned int size)
 {
-	char *array;
+	char	*array;
+	int 	counter;
 
 	array = "0123456789abcdef";
+<<<<<<< HEAD
 
 	if (*str_addr == '\0')
+=======
+	counter = 0;
+	while (*str_addr && 16 - size-- < 16)
+>>>>>>> 0daa2a77083ee5ced4268ac646fde8bd9de8e38c
 	{
-		write (1, "\t\t", 1);
-		return;
+		write(1, &array[*str_addr / 16], 1);
+		write(1, &array[*str_addr % 16], 1);
+		if (!(counter % 2 == 0))
+			write(1, " ", 1);
+		counter++;
+		str_addr++;
 	}
-	else if (counter == size)
-		return;
-	write(1, &array[*str_addr/16], 1);
-	write(1, &array[*str_addr%16], 1);
-	if (!(counter % 2 == 0))
-		write(1, " ", 1);
-	second_column(str_addr + 1, size, counter + 1);
+	while (counter != 16)
+	{
+		write(1, "  ", 2);
+		if (!(counter % 2 == 0))
+			write(1, " ", 1);
+		counter++;
+	}
 }
 
 int	third_column(char *str_addr, unsigned int size)
@@ -60,7 +85,11 @@ int	third_column(char *str_addr, unsigned int size)
 		size--;
 		if (*str_addr == '\0')
 		{
+<<<<<<< HEAD
 			write(1, "\n", 1);
+=======
+			write(1, ".\n", 2);
+>>>>>>> 0daa2a77083ee5ced4268ac646fde8bd9de8e38c
 			return (1);
 		}
 		else if (*str_addr < ' ' || *str_addr > '~')
@@ -75,12 +104,14 @@ int	third_column(char *str_addr, unsigned int size)
 
 void	*ft_print_memory(void *addr, unsigned int size)
 {
-	char *str_addr;
-	int full_stop;
+	char	*str_addr;
+	int		number_of_rows;
+	int		full_stop;
 
 	str_addr = addr;
+	number_of_rows = size / 16;
 	first_column(addr);
-	second_column (str_addr, size, 0);
+	second_column (str_addr, size, number_of_rows);
 	full_stop = third_column(str_addr, size);
 	if (full_stop == 1)
 		return (addr);
@@ -88,10 +119,11 @@ void	*ft_print_memory(void *addr, unsigned int size)
 	return (addr);
 }
 
+#include <strlen.h>
 int main(void)
 {
-	char *str = "Bonjour les aminches\n\n\nc\n est fou\ntout\nce qu on peut faire avec\n\n\nprint_memory\n\n\n\nlol\nlol\n \n";
-	unsigned int size = 14;
+	char *str = "0123456789012345";
+	unsigned int size = strlen(str);
 	void *addr = str;
 
 	ft_print_memory(addr, size);

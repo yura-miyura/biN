@@ -31,11 +31,14 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 }
 
 /* #include <stdio.h>
+#include <bsd/string.h>
 int main(void)
 {
 	unsigned int	size = 10;
 	char *src = "hello";
-	char dest[size];
-	printf("%d\n", ft_strlcpy(dest, src, size));
+	char dest[10];
+	printf("%i\n", ft_strlcpy(dest, src, size));
+	printf("%i\n", strlcpy(dest, src, size));
 	printf("%s\n", dest);
-} */
+}
+ */
