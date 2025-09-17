@@ -1,45 +1,55 @@
-// Header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yartym <yartym@student.42.fr>              #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-17 07:53:40 by yartym            #+#    #+#             */
+/*   Updated: 2025-09-17 07:53:40 by yartym           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
+
 int	ft_atoi(char *str)
 {
-	int start;
-	int i;
-	int is_neg;
-	int result;
+	int	i;
+	int	is_neg;
+	int	result;
 
 	i = 0;
 	result = 0;
-	start = 0;
 	is_neg = 1;
-	while (str[i] && ((str[i] >= 9 && str[i] <= 13)
-			||(str[i] >= '0' && str[i] <= '9') || str[i] == ' '
-			|| str[i] == '+' || str[i] == '-' ))
+	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || str[i] == ' '))
+		i++;
+	while (str[i] && (str[i] == '+' || str[i] == '-'))
 	{
-		if (str[i] == '+' && result == 0)
-		{
-			if (start == 0)
-				start = 1;
-		}
-		else if (str[i] == '-' && result == 0)
-		{
-			if (start == 0)
-				start = 1;
+		if (str[i] == '-')
 			is_neg *= -1;
-		}
-		else if (str[i] >= '0' && str[i] <= '9')
-			result = (result * 10) + (str[i] - '0');
-		else if (start == 1 || (result > 0 && !(str[i] >= '0' && str[i] <= '9')))
-			break;
+		i++;
+	}
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	{
+		result = result * 10 + (str[i] - '0');
 		i++;
 	}
 	return (result * is_neg);
 }
 
-#include <stdio.h>
-#include <stdlib.h>
+/* #include <stdio.h>
 int main(void)
 {
-	char *str = "+-123";
+	char *str;
+	str = "+--123f+-";
 	printf("%d\n", ft_atoi(str));
-	printf("%d\n", atoi(str));
-}
+
+	str = "a 123";
+	printf("%d\n", ft_atoi(str));
+
+	str = "+ -1231";
+	printf("%d\n", ft_atoi(str));
+
+	str = "--+-+-1231";
+	printf("%d\n", ft_atoi(str));
+} */
