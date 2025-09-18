@@ -19,6 +19,8 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 	while (src[src_len])
 		src_len++;
 	i = 0;
+	if (size == 0)
+		return (src_len);
 	while (i < src_len && i < size - 1)
 	{
 		dest[i] = src[i];
@@ -33,11 +35,11 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 #include <string.h>
 int main(void)
 {
-	unsigned int	size = 5;
-	char *src = "he";
+	unsigned int	size = 0;
+	char *src = "hello";
 	char dest[size];
 	printf("%d\n", ft_strlcpy(dest, src, size));
 	// printf("%ld\n", strlcpy(dest, src, size));
 	printf("%s\n", dest);
 }
-*/
+ */

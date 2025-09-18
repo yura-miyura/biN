@@ -12,35 +12,34 @@
 
 #include <unistd.h>
 
-void	ft_ptchar(char c)
+void	pnt_in_hex(unsigned char c)
 {
-	write(1, &c, 1);
+	char	*array;
+
+	array = "0123456789abcdef";
+	write(1, "\\", 1);
+	write(1, &array[c / 16], 1);
+	write(1, &array[c % 16], 1);
 }
 
 void	ft_putstr_non_printable(char *str)
 {
-	int		i;
-	char	*array;
+	int	i;
 
-	array = "0123456789abcdef";
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] < ' ' || str[i] > '~')
-		{
-			ft_ptchar('\\');
-			ft_ptchar(array[str[i] / 16]);
-			ft_ptchar(array[str[i] % 16]);
-		}
+		if (str[i] >= ' ' && str[i] <= '~')
+			write(1, &str[i], 1);
 		else
-			ft_ptchar(str[i]);
+			pnt_in_hex((unsigned char) str[i]);
 		i++;
 	}
 }
 
 /* int main(void)
 {
-	char str[] ={'h', '\n', '3', 17, '\0'};
+	char *str = "Hello \n\t why it's not fucking\n working?";
 	ft_putstr_non_printable(str);
 }
- */
+*/

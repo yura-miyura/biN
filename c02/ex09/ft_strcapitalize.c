@@ -25,14 +25,12 @@ char	*ft_strcapitalize(char *str)
 	int	i;
 	int	true_false;
 
+	true_false = 1;
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-		{
-			if (true_false || i == 0)
-				str[i] -= 'a' - 'A';
-		}
+		if (str[i] >= 'a' && str[i] <= 'z' && true_false)
+			str[i] -= 'a' - 'A';
 		else if (str[i] >= 'A' && str[i] <= 'Z' && !true_false)
 			str[i] += 'a' - 'A';
 		true_false = new_word(str[i]);
