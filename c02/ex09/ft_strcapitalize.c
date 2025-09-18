@@ -10,30 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+int new_word(char c)
+{
+	int	true_false;
+
+	true_false = !(c >= 'a' && c <= 'z')
+				&& !(c >= 'A' && c <= 'Z')
+				&& !(c >= '0' && c <= '9');
+	return (true_false);
+}
+
 char	*ft_strcapitalize(char *str)
 {
-	int	index;
+	int	i;
+	int true_false;
 
-	index = 0;
-	while (str[index] != '\0')
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (str[index] >= 'a' && str[index] <= 'z')
+		if (str[i] >= 'a' && str[i] <= 'z')
 		{
-			if (index == 0)
-				str[index] -= 'a' - 'A';
-			else if (str[index - 1] == ' ' || str[index - 1] == '+'
-				|| str[index - 1] == '-')
-				str[index] -= 'a' - 'A';
+			if (true_false || i == 0)
+				str[i] -= 'a' - 'A';
 		}
-		index++;
+		else if (str[i] >= 'A' && str[i] <= 'Z' && !true_false)
+			str[i] += 'a' - 'A';
+		true_false = new_word(str[i]);
+		i++;
 	}
 	return (str);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 int main(void)
 {
-	char str[] = "hi, how are you? 42words forty-two; fifty+and+one";
+	char str[] = "hi, hOw are you? 42WorDs foRty-tWo; fiFty+and+one";
 	printf("%s\n", str);
 	printf("%s\n", ft_strcapitalize(str));
 }
+ */

@@ -16,34 +16,25 @@ void ft_ptchar(char c)
 {
 	write(1, &c, 1);
 }
-void char_to_hex(char c)
-{
-	char *array;
-
-	array = "0123456789abcdef";
-
-	if (c > 15)
-		char_to_hex(c / 16);
- 	ft_ptchar(array[c % 16]);
-}
 
 void ft_putstr_non_printable(char *str)
 {
-	int	index;
+	int	i;
+	char *array;
 
-	index = 0;
-	while (str[index] != '\0')
+	array = "0123456789abcdef";
+	i = 0;
+	while (str[i])
 	{
-		if (str[index] < ' ' || str[index] > '~')
+		if (str[i] < ' ' || str[i] > '~')
 		{
 			ft_ptchar('\\');
-			if (str[index] < 16)
-				ft_ptchar('0');
-			char_to_hex(str[index]);
+			ft_ptchar(array[str[i] / 16]);
+			ft_ptchar(array[str[i] % 16]);
 		}
 		else
-			ft_ptchar(str[index]);
-		index++;
+			ft_ptchar(str[i]);
+		i++;
 	}
 }
 
@@ -52,4 +43,4 @@ void ft_putstr_non_printable(char *str)
 	char str[] ={'h', '\n', '3', 17, '\0'};
 	ft_putstr_non_printable(str);
 }
-*/
+ */
