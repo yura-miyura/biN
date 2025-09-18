@@ -23,7 +23,8 @@ int	len_base(char *base)
 	while (base[j])
 	{
 		i = j + 1;
-		if (base[j] == '+' || base[j] == '-')
+		if (base[j] <= ' ' || base[j] == 127
+			|| base[j] == '-' || base[j] == '+')
 			return (0);
 		while (base[i])
 			if (base[j] == base[i++])
@@ -36,11 +37,16 @@ int	len_base(char *base)
 	return (length);
 }
 
-void	int_min(long nbr, char *base, int length)
+void	putnbr_all_int(long nbr, char *base, int length)
 {
-	if (nbr > length)
-		int_min(nbr / length, base, length);
-	write(1, &base[nbr % length], 1);
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		write(1, "-", 1);
+	}
+	if (nbr >= length)
+		putnbr_all_int(nbr / length, base, length);
+	write(1, base + (nbr % length), 1);
 }
 
 void	ft_putnbr_base(int nbr, char *base)
@@ -50,16 +56,7 @@ void	ft_putnbr_base(int nbr, char *base)
 	length = len_base(base);
 	if (length < 1)
 		return ;
-	if (nbr == -2147483648)
-		return (write(1, "-", 1), int_min((long)nbr * -1, base, length));
-	if (nbr < 0)
-	{
-		nbr *= -1;
-		write(1, "-", 1);
-	}
-	if (nbr >= length)
-		ft_putnbr_base(nbr / length, base);
-	write(1, &base[nbr % length], 1);
+	return (putnbr_all_int((long)nbr, base, length));
 }
 
 // Test me

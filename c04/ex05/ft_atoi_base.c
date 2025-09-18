@@ -21,7 +21,8 @@ int	length_and_valid_base(char *base)
 	while (base[j])
 	{
 		i = j + 1;
-		if (base[j] == '+' || base[j] == '-')
+		if (base[j] <= ' ' || base[j] == 127
+			|| base[j] == '-' || base[j] == '+')
 			return (0);
 		while (base[i])
 			if (base[j] == base[i++])

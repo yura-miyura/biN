@@ -11,17 +11,18 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stddef.h>
 #define HEX 16
 
-void	number_to_hex(unsigned long long nb, int counter)
+void	number_to_hex(unsigned long long nb, int padding)
 {
 	char	*array;
 
 	array = "0123456789abcdef";
 	if (nb >= HEX)
-		number_to_hex(nb / HEX, counter + 1);
+		number_to_hex(nb / HEX, padding + 1);
 	if (nb < HEX)
-		while (counter++ < HEX)
+		while (++padding < HEX)
 			write(1, "0", 1);
 	write(1, &array[nb % HEX], 1);
 }
@@ -35,24 +36,19 @@ void	first_column(void *addr, int counter)
 	write(1, ": ", 2);
 }
 
-void	second_column(char *str_addr, int counter)
+void	second_column(char *str_addr, unsigned int size, int counter)
 {
 	char	*array;
 
 	array = "0123456789abcdef";
-	while (*str_addr && counter < HEX)
+	while (counter < HEX && size > 0)
 	{
 		write(1, &array[*str_addr / HEX], 1);
 		write(1, &array[*str_addr % HEX], 1);
 		if (!(counter++ % 2 == 0))
 			write(1, " ", 1);
 		str_addr++;
-	}
-	if (*str_addr == '\0' && counter < HEX)
-	{
-		write(1, "00", 2);
-		if (!(counter++ % 2 == 0))
-			write(1, " ", 1);
+		size--;
 	}
 	while (counter < HEX)
 	{
@@ -62,45 +58,46 @@ void	second_column(char *str_addr, int counter)
 	}
 }
 
-void	third_column(char *str_addr, int counter)
+void	third_column(char *str_addr, unsigned int size, int counter)
 {
-	while (counter < HEX)
+	while (counter < HEX && size > 0)
 	{
-		if (*str_addr == '\0')
-		{
-			write(1, ".", 1);
-			counter = HEX;
-		}
-		else if (*str_addr < ' ' || *str_addr > '~')
+		if (*str_addr < ' ' || *str_addr > '~')
 			write(1, ".", 1);
 		else
 			write(1, str_addr, 1);
 		str_addr++;
 		counter++;
+		size--;
 	}
 	write(1, "\n", 1);
 }
 
 void	*ft_print_memory(void *addr, unsigned int size)
 {
-	char	*str_addr;
-	int		counter;
+	char			*str_addr;
+	unsigned int	index;
 
-	counter = 0;
-	str_addr = addr;
-	first_column(addr, counter);
-	second_column (str_addr, counter);
-	third_column(str_addr, counter);
-	if (size >= HEX)
-		ft_print_memory(addr + HEX, size - HEX);
+	if (addr == NULL)
+		return (NULL);
+	index = 0;
+	str_addr = (char *)addr;
+	while (index <= size)
+	{
+		first_column(str_addr + index, 0);
+		second_column (str_addr + index, size - index, 0);
+		third_column(str_addr + index, size - index, 0);
+		index += HEX;
+	}
 	return (addr);
 }
 
 /* #include <string.h>
+#include <stdio.h>
 int main(void)
 {
-	char *str = "Bonjour les aminchesasdf \n\t\nsadf\n";
-	unsigned int size = strlen(str);
+	// char *str = NULL;
+	char *str = "Bonjour les aminf ches ";
 	void *addr = str;
 
 	ft_print_memory(addr, size);

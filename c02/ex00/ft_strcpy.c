@@ -33,4 +33,5 @@ int	main(void)
 	char dest[12];
 	ft_strcpy(dest, src);
 	printf("%s\n", dest);
-}*/
+}
+ */

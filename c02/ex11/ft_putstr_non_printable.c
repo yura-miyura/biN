@@ -12,15 +12,15 @@
 
 #include <unistd.h>
 
-void ft_ptchar(char c)
+void	ft_ptchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void ft_putstr_non_printable(char *str)
+void	ft_putstr_non_printable(char *str)
 {
-	int	i;
-	char *array;
+	int		i;
+	char	*array;
 
 	array = "0123456789abcdef";
 	i = 0;

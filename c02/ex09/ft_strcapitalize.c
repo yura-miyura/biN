@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int new_word(char c)
+int	new_word(char c)
 {
 	int	true_false;
 
 	true_false = !(c >= 'a' && c <= 'z')
-				&& !(c >= 'A' && c <= 'Z')
-				&& !(c >= '0' && c <= '9');
+		&& !(c >= 'A' && c <= 'Z')
+		&& !(c >= '0' && c <= '9');
 	return (true_false);
 }
 
 char	*ft_strcapitalize(char *str)
 {
 	int	i;
-	int true_false;
+	int	true_false;
 
 	i = 0;
 	while (str[i] != '\0')

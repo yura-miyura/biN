@@ -17,7 +17,7 @@ void	ft_pntchar(char c)
 	write(1, &c, 1);
 }
 
-void	int_min(long nb)
+void	putnbr_all_int(long nb)
 {
 	if (nb < 0)
 	{
@@ -25,22 +25,13 @@ void	int_min(long nb)
 		nb *= -1;
 	}
 	if (nb > 9)
-		int_min(nb / 10);
+		putnbr_all_int(nb / 10);
 	ft_pntchar(nb % 10 + '0');
 }
 
 void	ft_putnbr(int nb)
 {
-	if (nb == -2147483648)
-		return (int_min((long)nb));
-	if (nb < 0)
-	{
-		ft_pntchar('-');
-		nb *= -1;
-	}
-	if (nb > 9)
-		ft_putnbr(nb / 10);
-	ft_pntchar(nb % 10 + '0');
+	return (putnbr_all_int((long)nb));
 }
 
 /* int main(void)
@@ -48,4 +39,5 @@ void	ft_putnbr(int nb)
 	ft_putnbr(2147483647);
 	write(1, "\n", 1);
 	ft_putnbr(-2147483648);
+	write(1, "\n", 1);
 } */

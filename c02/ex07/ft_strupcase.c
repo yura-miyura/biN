@@ -33,4 +33,3 @@ int main(void)
 	printf("After: %s\n", ft_strupcase(str));
 }
 */
-
