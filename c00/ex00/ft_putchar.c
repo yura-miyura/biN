@@ -20,7 +20,7 @@
 // 	ft_putchar('c');
 // }
 
-Function that writes a single character
+// Function that writes a single character
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
