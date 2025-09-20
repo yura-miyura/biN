@@ -51,9 +51,9 @@ char	**ft_sort(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	j;
-	char **sorted_argv;
+	int		i;
+	int		j;
+	char	**sorted_argv;
 
 	sorted_argv = ft_sort(argc, argv);
 	i = 1;
