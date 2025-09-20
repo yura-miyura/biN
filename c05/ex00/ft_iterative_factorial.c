@@ -12,5 +12,22 @@
 
 int	ft_iterative_factorial(int nb)
 {
+	int result;
 
+	result = 1;
+	if (nb < 0)
+		return (0);
+	else if (nb == 0)
+		return (result);
+	while (nb > 1)
+		result *= nb--;
+	return (result);
+}
+
+#include <stdio.h>
+
+int main(void)
+{
+	int nb = 5;
+	printf("%d\n", ft_iterative_factorial(nb));
 }
